@@ -3,11 +3,11 @@ var connection = require("../config/connection.js");
 
 // Object for all our SQL statement functions.
 var orm = {
-  all: function(table, cb) {
+  all: function (table, cb) {
     var queryString = "SELECT * FROM " + table + ";";
 
     console.log(queryString);
-    connection.query(queryString, function(err, result) {
+    connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
       };
@@ -15,11 +15,11 @@ var orm = {
       cb(result);
     });
   },
-  create: function(table, cols, cb) {
-    var queryString = "INSERT INTO " + table + " (" + cols.toString() + ") VALUES (?, 0)";
+  create: function (table, name, cb) {
+    var queryString = "INSERT INTO " + table + " (burger_name, devoured) VALUES (?, 0)";
 
     console.log(queryString);
-    connection.query(queryString, vals, function(err, result) {
+    connection.query(queryString, name, function (err, result) {
       if (err) {
         throw err;
       };
@@ -27,11 +27,11 @@ var orm = {
       cb(result);
     });
   },
-  update: function(table, condition, cb) {
+  update: function (table, condition, cb) {
     var queryString = "UPDATE " + table + " SET devoured = true WHERE " + condition;
 
     console.log(queryString);
-    connection.query(queryString, function(err, result) {
+    connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
       };
@@ -39,11 +39,11 @@ var orm = {
       cb(result);
     });
   },
-  delete: function(table, condition, cb) {
+  delete: function (table, condition, cb) {
     var queryString = "DELETE FROM " + table + " WHERE " + condition;
 
     console.log(queryString);
-    connection.query(queryString, function(err, result) {
+    connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
       };

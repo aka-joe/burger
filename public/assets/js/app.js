@@ -1,5 +1,5 @@
 $(function () {
-  $(".create-form").on("submit", function (event) {
+  $("form").on("submit", function (event) {
     event.preventDefault();
 
     var newBurger = {
@@ -13,8 +13,6 @@ $(function () {
       data: newBurger
     }).then(
       function () {
-        console.log(NewBurger.burger_name + "has been added");
-        // Reload the page to get the updated list
         location.reload();
       }
     );
@@ -28,24 +26,19 @@ $(function () {
       type: "PUT"
     }).then(
       function () {
-        console.log("changed sleep to", newSleep);
-        // Reload the page to get the updated list
         location.reload();
       }
     );
   });
 
-
-  $(".delete-cat").on("click", function (event) {
+  $(".delete").on("click", function (event) {
     var id = $(this).data("id");
 
     // Send the DELETE request.
-    $.ajax("/api/cats/" + id, {
+    $.ajax("/api/burgers/" + id, {
       type: "DELETE"
     }).then(
       function () {
-        console.log("deleted cat", id);
-        // Reload the page to get the updated list
         location.reload();
       }
     );
